@@ -1,33 +1,141 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
   <head>
-    <link href="styles/style.css" rel="stylesheet" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Hello  World</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<script async src="scripts/main.js"></script>  
-</head>
-<button>Change user</button>
-  <body>
-    <h1>My first webpage</h1>
-    <img
-      src="C:\Users\thinkbook\OneDrive\web.development\first-website\images\firefox-icon.png"
-      alt="Firefox Logo"
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Emotion Copilot | AI-assisted project planning support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
     />
-     <p>This is my first paragraph</p>
-     <p>At Mozilla, we're a global community of</p>
+    <link rel="stylesheet" href="styles/style.css" />
+    <script defer src="scripts/main.js"></script>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="badge">AI chatbot for project journey support</p>
+        <h1>Emotion Copilot</h1>
+        <p class="lede">
+          Capture emotional experiences during your project, then let the chatbot
+          detect the dominant feeling and offer a short, supportive response.
+          Bring your own OpenAI API key to connect directly to ChatGPT.
+        </p>
+        <div class="hero__notes">
+          <span class="note">No account needed</span>
+          <span class="note">Runs in your browser</span>
+          <span class="note">Keep conversations supportive</span>
+        </div>
+      </div>
+    </header>
 
-<ol>
-  <li>technologists</li>
-  <li>thinkers</li>
-  <li>builders</li>
-  </bodyl>
-<p>working together…</p>
-<a href="https://www.mozilla.org/en-US/about/manifesto/">
-  Mozilla Manifesto
-</a>
+    <main class="page">
+      <section class="panel">
+        <div class="panel__header">
+          <div>
+            <p class="eyebrow">Step 1</p>
+            <h2>Connect to ChatGPT</h2>
+            <p class="text-muted">
+              Paste an OpenAI API key to enable the chatbot. Keys never leave
+              your browser except for calls you make to the OpenAI API.
+            </p>
+          </div>
+          <div class="disclaimer" role="note">
+            <strong>Heads-up:</strong> This tool is for reflective support and
+            planning only. It is not a substitute for professional help.
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <label class="field">
+            <span class="field__label">OpenAI API key</span>
+            <input
+              id="apiKey"
+              name="apiKey"
+              type="password"
+              inputmode="text"
+              placeholder="sk-..."
+              autocomplete="off"
+            />
+            <p class="field__help">
+              Your key is used only to talk to the OpenAI API. Check "Remember
+              this key" to keep it in your browser storage.
+            </p>
+            <label class="remember">
+              <input id="rememberKey" type="checkbox" />
+              <span>Remember this key on this device</span>
+            </label>
+          </label>
+
+          <div class="aside">
+            <p class="aside__title">What gets sent?</p>
+            <ul>
+              <li>Your emotional experience text</li>
+              <li>Model: <code>gpt-4o-mini</code></li>
+              <li>Purpose: detect the main emotion and craft a brief, kind reply</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__header">
+          <div>
+            <p class="eyebrow">Step 2</p>
+            <h2>Share what happened</h2>
+            <p class="text-muted">
+              Describe your recent emotional experience so the chatbot can
+              analyze how it might feel and respond with care.
+            </p>
+          </div>
+          <div class="pill pill--calm">Supports sadness, joy, anger, fear, anxiety, frustration, relief, pride, or neutral feelings.</div>
+        </div>
+
+        <form id="analysisForm" class="form" novalidate>
+          <label class="field">
+            <span class="field__label">Emotional experience</span>
+            <textarea
+              id="experience"
+              name="experience"
+              rows="5"
+              required
+              placeholder="Example: We missed a milestone this week and I feel like the team is losing motivation."
+            ></textarea>
+          </label>
+
+          <div class="actions">
+            <button class="btn" type="submit">Analyze with ChatGPT</button>
+            <p class="hint">Expect a short emotion label plus a supportive message.</p>
+          </div>
+
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel__header">
+          <div>
+            <p class="eyebrow">Step 3</p>
+            <h2>Chatbot feedback</h2>
+            <p class="text-muted">Results from the most recent analysis.</p>
+          </div>
+        </div>
+
+        <div class="result" id="result">
+          <div class="result__emotion">
+            <p class="eyebrow">Detected emotion</p>
+            <p id="emotion" class="result__label">—</p>
+          </div>
+          <div class="result__support">
+            <p class="eyebrow">Supportive response</p>
+            <p id="support" class="result__text">Waiting for your first check-in.</p>
+          </div>
+        </div>
+
+        <div id="history" class="history" aria-live="polite"></div>
+      </section>
+    </main>
   </body>
 </html>
